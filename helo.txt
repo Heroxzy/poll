@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Live Football Vote</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 50px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .box {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>⚽ Who is the best football player?</h2>
+
+<button onclick="vote('messi')">🔵 Messi</button>
+<button onclick="vote('ronaldo')">🔴 Ronaldo</button>
+
+<div class="box">
+  <p>🔵 Messi Votes: <span id="messiCount">0</span></p>
+  <p>🔴 Ronaldo Votes: <span id="ronaldoCount">0</span></p>
+</div>
+
+<script>
+  // Load saved votes
+  let messi = localStorage.getItem("messi") || 0;
+  let ronaldo = localStorage.getItem("ronaldo") || 0;
+
+  function update() {
+    document.getElementById("messiCount").innerText = messi;
+    document.getElementById("ronaldoCount").innerText = ronaldo;
+  }
+
+  function vote(player) {
+    if (player === "messi") {
+      messi++;
+      localStorage.setItem("messi", messi);
+    } else {
+      ronaldo++;
+      localStorage.setItem("ronaldo", ronaldo);
+    }
+    update();
+  }
+
+  update();
+</script>
+
+</body>
+</html>
